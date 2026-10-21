@@ -1,0 +1,172 @@
+{
+  "siteUrl": "https://YOUR-USERNAME.github.io/YOUR-REPO",
+  "name": "Arnold Jay Villalobos",
+  "shortName": "Arnold",
+  "title": "Traditional/Digital Artist",
+  "tagline": "",
+  "intro": "Traditional and digital artist studying Graphics Design at City College of Calamba.",
+  "location": "Calamba, Laguna",
+  "email": "arnoldjayvillalobos16@gmail.com",
+  "phone": "0970-862-1024",
+  "availability": "Open to creative projects and collaborations",
+  "formEndpoint": "",
+  "social": {
+    "github": "",
+    "linkedin": "",
+    "facebook": "",
+    "instagram": ""
+  },
+  "cvFile": "assets/cv/Arnold_Villalobos_CV.pdf",
+  "photo": "assets/img/profile.jpg",
+  "years": "[Add years of experience]",
+  "occupation": "Student (DCI/BSIT, Graphics Design)",
+  "specialization": [
+    "Traditional art",
+    "Digital illustration",
+    "Graphic design"
+  ],
+  "bio": [
+    "I'm Arnold Jay Villalobos, a Traditional/Digital Artist from Calamba, Laguna. I'm a DCI/BSIT student at City College of Calamba, majoring in Graphics Design, and a member of the Information Technology Society Organization.",
+    "Traditional art is my strongest skill. I also create digital art in IbisPaint and design in Canva.",
+    "[Edit this paragraph: what inspired you, what you like to create, and the kinds of projects you've worked on.]"
+  ],
+  "philosophy": "[Add your creative philosophy here.]",
+  "goals": "[Add your current goals and what you hope to achieve.]",
+  "skills": {
+    "Traditional Art": [
+      "Traditional art"
+    ],
+    "Graphic Design": [
+      "Canva",
+      "IbisPaint"
+    ],
+    "Digital Art & Illustration": [
+      "IbisPaint"
+    ]
+  },
+  "experience": [
+    {
+      "position": "Member",
+      "organization": "Information Technology Society Organization",
+      "location": "City College of Calamba",
+      "dates": "[Add dates]",
+      "placeholder": true,
+      "responsibilities": [
+        "[Add your responsibilities]"
+      ],
+      "accomplishments": [
+        "[Add an accomplishment]"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "DCI / BSIT",
+      "school": "City College of Calamba",
+      "year": "2025 – 2030 (expected)",
+      "major": "Graphics Design",
+      "note": "Organization: Information Technology Society Organization",
+      "placeholder": false
+    }
+  ],
+  "credentials": [],
+  "projects": [
+    {
+      "slug": "traditional-sketchbook",
+      "name": "Traditional Sketchbook",
+      "category": "Traditional Art",
+      "type": "Artwork set",
+      "year": "2025",
+      "status": "Sample",
+      "role": "Artist",
+      "placeholder": true,
+      "tech": [
+        "Traditional art"
+      ],
+      "description": "Sample entry: a set of traditional drawings. Replace with your real work.",
+      "overview": "Sample project. Describe the set of drawings here.",
+      "problem": "[Describe the objective.]",
+      "process": "[Describe your approach.]",
+      "features": [
+        "[Add a design highlight]"
+      ],
+      "url": "",
+      "github": "",
+      "demo": "",
+      "docs": ""
+    },
+    {
+      "slug": "digital-illustration-series",
+      "name": "Digital Illustration Series",
+      "category": "Digital Art",
+      "type": "Illustration set",
+      "year": "2025",
+      "status": "Sample",
+      "role": "Artist",
+      "placeholder": true,
+      "tech": [
+        "IbisPaint"
+      ],
+      "description": "Sample entry: digital illustrations made in IbisPaint. Replace with your real work.",
+      "overview": "Sample project. Describe your illustrations here.",
+      "problem": "[Describe the objective.]",
+      "process": "[Describe your approach.]",
+      "features": [
+        "[Add a design highlight]"
+      ],
+      "url": "",
+      "github": "",
+      "demo": "",
+      "docs": ""
+    },
+    {
+      "slug": "canva-poster-set",
+      "name": "Canva Poster Set",
+      "category": "Graphic Design",
+      "type": "Posters",
+      "year": "2025",
+      "status": "Sample",
+      "role": "Artist",
+      "placeholder": true,
+      "tech": [
+        "Canva"
+      ],
+      "description": "Sample entry: posters designed in Canva. Replace with your real work.",
+      "overview": "Sample project. Describe your posters here.",
+      "problem": "[Describe the objective.]",
+      "process": "[Describe your approach.]",
+      "features": [
+        "[Add a design highlight]"
+      ],
+      "url": "",
+      "github": "",
+      "demo": "",
+      "docs": ""
+    },
+    {
+      "slug": "personal-logo",
+      "name": "Personal Logo Concept",
+      "category": "Graphic Design",
+      "type": "Logo",
+      "year": "2025",
+      "status": "Sample",
+      "role": "Artist",
+      "placeholder": true,
+      "tech": [
+        "Canva",
+        "IbisPaint"
+      ],
+      "description": "Sample entry: a logo concept. Replace with your real work.",
+      "overview": "Sample project. Describe your logo here.",
+      "problem": "[Describe the objective.]",
+      "process": "[Describe your approach.]",
+      "features": [
+        "[Add a design highlight]"
+      ],
+      "url": "",
+      "github": "",
+      "demo": "",
+      "docs": ""
+    }
+  ]
+}

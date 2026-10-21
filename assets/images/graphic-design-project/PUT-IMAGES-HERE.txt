@@ -1,0 +1,9 @@
+Put the Graphic Design project images in THIS folder, with these exact names:
+
+  cover.jpg   main thumbnail and cover (landscape, about 1600x800 works well)
+  01.jpg      gallery image 1
+  02.jpg      gallery image 2
+  03.jpg      gallery image 3
+
+Use .jpg, or change the file names in data/site.js (project "image" and "gallery").
+Until a file exists, the site shows a placeholder box that names the missing file.

@@ -1,0 +1,2 @@
+Save the profile photo in this folder as profile.jpg (portrait, about 600x750).
+To use another name or format, change "photo" in data/site.js.
