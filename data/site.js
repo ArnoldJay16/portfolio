@@ -33,7 +33,7 @@ window.SITE = {
       "position": "Member",
       "organization": "Information Technology Society Organization",
       "location": "City College of Calamba",
-      "dates": "[Actual start date] – [Present or actual end date]",
+      "dates": "2025 - Present",
       "placeholder": true,
       "responsibilities": [
         "Collaborate with fellow members during assigned activities.",
