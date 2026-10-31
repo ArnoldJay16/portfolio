@@ -57,7 +57,7 @@
     about: function () {
       var rows = [["Name", S.name], ["Title", S.title], ["Location", S.location], ["Email", S.email], ["Phone", S.phone], ["Education", S.education[0].degree + ", " + S.education[0].school], ["Occupation", S.occupation], ["Experience", S.years]];
       return head("About me", "Who I am and what I do.") + '<section class="wrap two"><div class="prose">' + S.bio.map(function (b) { return "<p>" + esc(b) + "</p>"; }).join("") +
-        "<h2>Creative philosophy</h2><p>" + esc(S.philosophy) + "</p><h2>Career goals</h2><p>" + esc(S.goals) + '</p></div><aside class="panel"><dl>' +
+        "<p>" + esc(S.philosophy) + "</p><h2>Career goals</h2><p>" + esc(S.goals) + '</p></div><aside class="panel"><dl>' +
         rows.map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("") + '</dl><h2>Specialization</h2><ul class="plain">' +
         S.specialization.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></aside></section>";
     },
