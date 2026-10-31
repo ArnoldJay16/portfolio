@@ -18,10 +18,9 @@ window.SITE = {
   "specialization": ["Traditional art", "Digital illustration", "Graphic design"],
   "bio": [
     "I'm Arnold Jay Villalobos, a Traditional/Digital Artist from Calamba, Laguna. I'm a DCI/BSIT student at City College of Calamba, majoring in Graphics Design, and a member of the Information Technology Society Organization.",
-    "Traditional art is my strongest skill. I also create digital art in IbisPaint and design in Canva.",
-    "[Edit this paragraph: what inspired you, what you like to create, and the kinds of projects you've worked on.]"
+    "Traditional art is my strongest skill. I also create digital art in IbisPaint and design in Canva."
   ],
-  "philosophy": "[Add your creative philosophy here.]",
+  "philosophy": "",
   "goals": "My goal is to continue improving my skills in traditional art, digital illustration, and graphic design while exploring new creative techniques and visual styles. Through my studies and personal projects, I hope to build a strong portfolio that showcases my abilities, creativity, and growth as an artist. In the future, I aspire to pursue opportunities where I can apply my artistic skills, collaborate with others, and continue developing my own creative identity.",
   "skills": {
     "Traditional Art": ["Traditional art"],
