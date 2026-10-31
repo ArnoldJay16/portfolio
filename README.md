@@ -11,6 +11,7 @@ Static website (HTML, CSS, JavaScript). No build step for content: every page re
 - Graphic Design project: `assets/images/graphic-design-project/` with `cover.jpg`, `01.jpg`, `02.jpg`, `03.jpg`
 - Other names or formats: change `photo`, `image` and `gallery` in `data/site.js`.
 - Missing images show a box naming the file to add.
+- Clicking a project image opens a viewer. Fill in `title` and `description` for that image in `data/site.js` and they appear beneath it. Leave them empty and nothing is shown. Plain file paths (strings) still work and simply have no caption.
 - Compress images before adding them (under about 300 KB each; WebP is fine).
 
 ## CV

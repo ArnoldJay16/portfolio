@@ -9,6 +9,15 @@
     ["Projects", "projects/", "projects"], ["Education", "education/", "education"], ["CV", "cv/", "cv"], ["Contact", "contact/", "contact"]];
   var P = S.projects || [];
   var img = function (src, alt, cls) { return '<img class="' + (cls || "") + '" src="' + esc(root + src) + '" alt="' + esc(alt) + '" loading="lazy" data-ph="' + esc(src) + '">'; };
+  var norm = function (x) { return typeof x === "string" ? { src: x } : (x || {}); };
+  // Zoomable image: clicking opens the viewer; title/description (optional) show beneath it
+  var zimg = function (x, alt, cls) {
+    var it = norm(x), a = it.title || alt;
+    return '<button type="button" class="zoom z-' + (cls || "g") + '" data-src="' + esc(root + it.src) + '" data-alt="' + esc(a) + '" data-title="' + esc(it.title || "") + '" data-desc="' + esc(it.description || "") +
+      '" aria-label="View larger: ' + esc(a) + '">' + img(it.src, a, cls) + "</button>";
+  };
+  // Thumbnail = the project's first gallery image, unless an optional "image" is set
+  var thumbSrc = function (p) { return norm(p.image).src || (p.gallery && p.gallery[0] ? norm(p.gallery[0]).src : ""); };
   var tags = function (a) { return '<p class="tags">' + a.map(function (t) { return "<span>" + esc(t) + "</span>"; }).join("") + "</p>"; };
   var badge = function (t) { return '<span class="badge">' + t + "</span>"; };
   var ext = function (url, label, cls) { return url ? '<a class="' + cls + '" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + label + "</a>" : ""; };
@@ -28,7 +37,7 @@
   function card(p) {
     var s = [p.name, p.description, p.category, p.type, p.year, p.status, p.role].concat(p.tech || []).join(" ").toLowerCase();
     return '<article class="card" data-cat="' + esc(p.category) + '" data-s="' + esc(s) + '"><a class="thumb" href="' + u("projects/" + p.slug + "/") + '">' +
-      img(p.image, "Cover image for " + p.name) + (p.placeholder ? badge("Sample") : "") + "</a>" +
+      img(thumbSrc(p), "Thumbnail for " + p.name) + (p.placeholder ? badge("Sample") : "") + "</a>" +
       '<div class="cbody"><p class="meta">' + esc(p.category) + " · " + esc(p.year) + " · " + esc(p.status) + '</p><h3><a href="' + u("projects/" + p.slug + "/") + '">' + esc(p.name) + "</a></h3>" +
       "<p>" + esc(p.description) + "</p>" + tags(p.tech || []) + '<p class="role">Role: ' + esc(p.role) + '</p><p class="clinks"><a class="btn small" href="' + u("projects/" + p.slug + "/") + '">View project</a>' +
       ext(p.github, "Source", "") + ext(p.demo, "Demo", "") + "</p></div></article>";
@@ -81,7 +90,8 @@
     cv: function () {
       var b = S.cvFile ? '<a class="btn" href="' + esc(root + S.cvFile) + '" download>Download CV</a><a class="btn ghost" href="' + esc(root + S.cvFile) + '" target="_blank" rel="noopener noreferrer">View CV online</a>'
         : '<div class="notice"><p><strong>No CV yet.</strong> Add a PDF and set <code>cvFile</code> in data/site.js.</p></div>';
-      return head("Curriculum vitae", "Download my latest CV, or read it in your browser.") + '<section class="wrap"><p class="cta">' + b + "</p></section>";
+      var viewer = S.cvFile ? '<object class="cvbox" data="' + esc(root + S.cvFile) + '#view=FitH" type="application/pdf" aria-label="CV preview"><div class="notice"><p>Your browser can\'t show the CV here. Use the buttons above to open or download it.</p></div></object>' : "";
+      return head("Curriculum vitae", "Read my CV below, or download a copy.") + '<section class="wrap"><p class="cta">' + b + "</p>" + viewer + "</section>";
     },
     contact: function () {
       var f = function (id, label, extra, tag) { return '<div class="f"><label for="' + id + '">' + label + "</label><" + (tag || "input") + ' id="' + id + '" ' + extra + '><small class="err" id="' + id + '-e"></small></div>'; };
@@ -96,13 +106,14 @@
       if (i < 0) return head("Project not found", '<a href="' + u("projects/") + '">Back to all projects</a>');
       var p = P[i], pv = P[(i - 1 + P.length) % P.length], nx = P[(i + 1) % P.length];
       document.title = p.name + " | " + S.name;
+      var sec = function (t, x) { return x ? "<h2>" + t + "</h2><p>" + esc(x) + "</p>" : ""; }; // sections with no text are hidden
       var meta = [["Role", p.role], ["Year", p.year], ["Status", p.status], ["Category", p.category], ["Type", p.type]].map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
       var links = ext(p.url, "Live website", "btn ghost") + ext(p.github, "GitHub", "btn ghost") + ext(p.demo, "Demo", "btn ghost") + ext(p.docs, "Documentation", "btn ghost");
-      var gal = (p.gallery || []).map(function (g, n) { return img(g, "Image " + (n + 1) + " of " + p.name); }).join("");
+      var gal = (p.gallery || []).map(function (g, n) { var gi = norm(g); return "<figure>" + zimg(g, "Image " + (n + 1) + " of " + p.name) + (gi.title ? "<figcaption>" + esc(gi.title) + "</figcaption>" : "") + "</figure>"; }).join("");
       return '<article class="wrap case"><p class="meta"><a href="' + u("projects/") + '">Projects</a> / ' + esc(p.category) + "</p><h1>" + esc(p.name) + "</h1>" +
-        (p.placeholder ? '<p class="notice">Sample project text. Replace it in data/site.js.</p>' : "") + img(p.image, "Cover image for " + p.name, "cover") +
-        '<div class="two"><div class="prose"><h2>Overview</h2><p>' + esc(p.overview) + "</p><h2>Objective</h2><p>" + esc(p.problem) + "</p><h2>Process and solution</h2><p>" + esc(p.process) +
-        "</p><h2>Key features</h2><ul>" + (p.features || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + '</ul></div><aside class="panel"><dl>' + meta + "</dl><h2>Tools</h2>" + tags(p.tech || []) +
+        (p.placeholder ? '<p class="notice">Sample project text. Replace it in data/site.js.</p>' : "") + (norm(p.image).src ? zimg(p.image, "Cover image for " + p.name, "cover") : "") +
+        '<div class="two"><div class="prose">' + sec("Overview", p.overview) + sec("Objective", p.problem) + sec("Process and solution", p.process) +
+        ((p.features || []).length ? "<h2>Key features</h2><ul>" + p.features.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + "</ul>" : "") + '</div><aside class="panel"><dl>' + meta + "</dl><h2>Tools</h2>" + tags(p.tech || []) +
         (links ? '<p class="cta">' + links + "</p>" : "") + "</aside></div>" + (gal ? '<h2>Gallery</h2><div class="gal">' + gal + "</div>" : "") +
         (P.length > 1 ? '<nav class="pn" aria-label="Other projects"><a href="' + u("projects/" + pv.slug + "/") + '">Previous: ' + esc(pv.name) + '</a><a href="' + u("projects/" + nx.slug + "/") + '">Next: ' + esc(nx.name) + "</a></nav>" : '<nav class="pn"><a href="' + u("projects/") + '">Back to all projects</a></nav>') + "</article>";
     }
@@ -140,6 +151,40 @@
     chips.forEach(function (b) { b.addEventListener("click", function () { cat = b.dataset.f; chips.forEach(function (x) { x.classList.toggle("on", x === b); }); run(); }); });
     document.getElementById("clear").addEventListener("click", function () { q.value = ""; chips[0].click(); q.focus(); });
     run();
+  }
+
+  // Image viewer (lightbox) for project images
+  var zs = [].slice.call(document.querySelectorAll(".zoom"));
+  if (zs.length) {
+    var lb = document.createElement("div"); lb.className = "lb"; lb.hidden = true; lb.setAttribute("role", "dialog"); lb.setAttribute("aria-modal", "true"); lb.setAttribute("aria-label", "Image viewer");
+    lb.innerHTML = '<button class="lb-x" type="button" aria-label="Close viewer">×</button><button class="lb-p" type="button" aria-label="Previous image">‹</button><button class="lb-n" type="button" aria-label="Next image">›</button>' +
+      '<figure class="lb-f"><img alt=""><figcaption hidden></figcaption></figure>';
+    document.body.appendChild(lb);
+    var li = lb.querySelector("img"), cap = lb.querySelector("figcaption"), bx = lb.querySelector(".lb-x"), bp = lb.querySelector(".lb-p"), bn = lb.querySelector(".lb-n"), list = [], cur = 0, opener = null;
+    var show = function (i) {
+      cur = (i + list.length) % list.length; var z = list[cur];
+      li.src = z.dataset.src; li.alt = z.dataset.alt;
+      var t = z.dataset.title, d = z.dataset.desc;
+      cap.innerHTML = (t ? "<strong>" + esc(t) + "</strong>" : "") + (d ? "<p>" + esc(d) + "</p>" : ""); cap.hidden = !(t || d);
+      bp.hidden = bn.hidden = list.length < 2;
+    };
+    var close = function () { lb.hidden = true; document.body.style.overflow = ""; if (opener) opener.focus(); };
+    zs.forEach(function (z) {
+      z.addEventListener("click", function () {
+        if (!z.querySelector("img")) return; // missing image: nothing to zoom
+        list = zs.filter(function (x) { return x.querySelector("img"); }); opener = z; show(list.indexOf(z));
+        lb.hidden = false; document.body.style.overflow = "hidden"; bx.focus();
+      });
+    });
+    bx.addEventListener("click", close); bp.addEventListener("click", function () { show(cur - 1); }); bn.addEventListener("click", function () { show(cur + 1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+    document.addEventListener("keydown", function (e) {
+      if (lb.hidden) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft" && list.length > 1) show(cur - 1);
+      else if (e.key === "ArrowRight" && list.length > 1) show(cur + 1);
+      else if (e.key === "Tab") { var f = [bx, bp, bn].filter(function (b) { return !b.hidden; }), i = f.indexOf(document.activeElement); e.preventDefault(); f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus(); }
+    });
   }
 
   // Contact form
