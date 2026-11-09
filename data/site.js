@@ -22,7 +22,7 @@ window.SITE = {
     "Traditional art is my strongest skill. I also create digital art in IbisPaint and design in Canva.",
     "My love for art started with the cartoons and anime I enjoyed growing up, which sparked my imagination and appreciation for visual storytelling. I also find inspiration in the props, displays, and designs I see in malls reminding me that creativity is everywhere. I enjoy creating paintings, digital art, and graphic design, working on school projects, personal sketches."
   ],
-  "philosophy": "”Inspiration is everywhere; every detail holds a story worth creating.”I believe great art grows from observing the world around us and staying true to what inspires you. My goal is to create work that reflects both imagination and careful observation, while continuing to learn and grow as an artist.",
+  "philosophy": "”Inspiration is everywhere; every detail holds a story worth creating.” I believe great art grows from observing the world around us and staying true to what inspires you. My goal is to create work that reflects both imagination and careful observation, while continuing to learn and grow as an artist.",
   "goals": "My goal is to continue improving my skills in traditional art, digital illustration, and graphic design while exploring new creative techniques and visual styles. Through my studies and personal projects, I hope to build a strong portfolio that showcases my abilities, creativity, and growth as an artist. In the future, I aspire to pursue opportunities where I can apply my artistic skills, collaborate with others, and continue developing my own creative identity.",
   "skills": {
     "Traditional Art": ["Traditional art"],
@@ -39,7 +39,7 @@ window.SITE = {
         "Collaborate with fellow members during assigned activities.",
         "Contribute to activities and projects according to assigned responsibilities."
       ],
-      "accomplishments": ["[Add an accomplishment]"]
+      "accomplishments": ["Digitalizing every activity in this particular subject."]
     }
   ],
   "education": [
@@ -64,7 +64,7 @@ window.SITE = {
           "description": "Four Graphics Design activities: a still-life painting, a logo, a brand identity, and a typography design.",
           "overview": "A collection of four Graphics Design activities covering a still-life painting, a team logo, a coffee shop brand identity, and a typography-based title logo.",
           "problem": "Each activity explored a different part of graphic design: realistic rendering, logo design, brand identity, and typography.",
-          "process": "[Describe your creative approach and the solution you arrived at.]",
+          "process": "For each activity, I started with a core concept and chose colors, shapes, and layout to express it: realistic shading for the still-life, a name-based concept for the PINTRATO logo, warm colors and a heart-shaped steam cup for the coffee shop brand, and bold typography for the leadership title logo.",
           "features": [
                 "Careful color blending and shading in the still-life painting",
                 "A logo built from the words PINTA and LITRATO",
