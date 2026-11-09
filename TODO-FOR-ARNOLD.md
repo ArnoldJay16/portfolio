@@ -20,7 +20,7 @@ Anything in [square brackets] on the website is unfinished.
 
 ## Accounts to create (Arnold's own)
 - [ ] Contact form: create a form at formspree.io with YOUR email, then replace `formEndpoint` so messages reach you. Send a test message
-- [ ] Analytics: create a Google Analytics 4 property with a Web data stream for `https://arnoldjay16.github.io`, copy the `G-…` ID into `"analytics": { "goatcounter": "", "ga4": "G-…" }`. Or use GoatCounter instead
+- [ ] Analytics (visitor and CV download counters shown in the site footer): create a free account at goatcounter.com, choose a site code, then in GoatCounter open Settings and turn ON "Allow adding visitor counts on your website". Put the code in data/site.js like this: "analytics": { "goatcounter": "your-code", "ga4": "" }
 - [ ] Search: add the site to Google Search Console (URL prefix property), verify, and submit `sitemap.xml`
 
 ## Final check before presenting

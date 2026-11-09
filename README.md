@@ -46,9 +46,9 @@ Open `index.html` directly, or run `python3 -m http.server 8000` and visit http:
 ## Notes
 Fonts (Fraunces, Work Sans) load from Google Fonts. Colours are variables at the top of `assets/css/style.css`. The social-preview image is `assets/images/og-image.jpg` (add one, 1200x630).
 
-## Analytics (page views and CV downloads)
-In `data/site.js`, fill in ONE of these (leave the other empty):
-- `"analytics": { "goatcounter": "your-code" }` after creating a free site at goatcounter.com (no cookies). The dashboard shows page views, popular pages (including project pages), and device types.
-- `"analytics": { "ga4": "G-XXXXXXXXXX" }` for Google Analytics 4.
-CV clicks are recorded as events named `cv-download` and `cv-view` (GoatCounter) or `cv_download` and `cv_view` (GA4). Nothing is recorded when you open the files from a folder or on localhost.
+## Analytics (visitors and CV downloads, shown in the footer)
+1. Create a free site at goatcounter.com (no cookies). In its Settings, turn ON "Allow adding visitor counts on your website".
+2. In `data/site.js` set `"analytics": { "goatcounter": "your-code", "ga4": "" }`.
+3. The footer then shows "Visitors" (all page views) and "CV downloads". CV clicks are recorded as the event `cv-download` (and `cv-view` for the View online link). The full dashboard stays in GoatCounter.
+Nothing is recorded from a local folder or localhost. Google Analytics 4 is also supported through `"ga4": "G-..."`, but it cannot show public counters.
 After changing `siteUrl`, adding a project, or renaming a project slug, double-click `update-pages.bat`.
