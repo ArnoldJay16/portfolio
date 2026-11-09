@@ -1,16 +1,17 @@
 /* ALL website content lives here. Edit, save, refresh the browser: no build step needed. */
 window.SITE = {
-  "siteUrl": "https://YOUR-USERNAME.github.io/YOUR-REPO",
+  "siteUrl": "https://arnoldjay16.github.io/portfolio",
   "name": "Arnold Jay Villalobos",
   "title": "Traditional/Digital Artist",
-  "tagline": "",
+  "tagline": "[Add a short tagline]",
   "intro": "Traditional and digital artist studying Graphics Design at City College of Calamba.",
   "location": "Calamba, Laguna",
   "email": "arnoldjayvillalobos16@gmail.com",
   "phone": "0970-862-1024",
   "availability": "Open to creative projects and collaborations",
+  "analytics": { "goatcounter": "", "ga4": "" },
   "formEndpoint": "https://formspree.io/f/mrppykng",
-  "social": { "github": "", "linkedin": "", "facebook": "", "instagram": "" },
+  "social": { "github": "[Add GitHub URL]", "linkedin": "[Add LinkedIn URL]", "facebook": "", "instagram": "" },
   "cvFile": "assets/cv/Arnold_Villalobos_CV.pdf",
   "photo": "assets/images/profile.jpg",
   "years": "5 years",
@@ -18,9 +19,10 @@ window.SITE = {
   "specialization": ["Traditional art", "Digital illustration", "Graphic design"],
   "bio": [
     "I'm Arnold Jay Villalobos, a Traditional/Digital Artist from Calamba, Laguna. I'm a DCI/BSIT student at City College of Calamba, majoring in Graphics Design, and a member of the Information Technology Society Organization.",
-    "Traditional art is my strongest skill. I also create digital art in IbisPaint and design in Canva."
+    "Traditional art is my strongest skill. I also create digital art in IbisPaint and design in Canva.",
+    "[Add a paragraph about what inspired you, what you like to create, and the kinds of projects you've worked on.]"
   ],
-  "philosophy": "",
+  "philosophy": "[Add your creative philosophy]",
   "goals": "My goal is to continue improving my skills in traditional art, digital illustration, and graphic design while exploring new creative techniques and visual styles. Through my studies and personal projects, I hope to build a strong portfolio that showcases my abilities, creativity, and growth as an artist. In the future, I aspire to pursue opportunities where I can apply my artistic skills, collaborate with others, and continue developing my own creative identity.",
   "skills": {
     "Traditional Art": ["Traditional art"],
@@ -33,12 +35,11 @@ window.SITE = {
       "organization": "Information Technology Society Organization",
       "location": "City College of Calamba",
       "dates": "2025 - Present",
-      "placeholder": true,
       "responsibilities": [
         "Collaborate with fellow members during assigned activities.",
         "Contribute to activities and projects according to assigned responsibilities."
       ],
-      "accomplishments": []
+      "accomplishments": ["[Add an accomplishment]"]
     }
   ],
   "education": [
@@ -63,7 +64,7 @@ window.SITE = {
           "description": "Four Graphics Design activities: a still-life painting, a logo, a brand identity, and a typography design.",
           "overview": "A collection of four Graphics Design activities covering a still-life painting, a team logo, a coffee shop brand identity, and a typography-based title logo.",
           "problem": "Each activity explored a different part of graphic design: realistic rendering, logo design, brand identity, and typography.",
-          "process": "",
+          "process": "[Describe your creative approach and the solution you arrived at.]",
           "features": [
                 "Careful color blending and shading in the still-life painting",
                 "A logo built from the words PINTA and LITRATO",

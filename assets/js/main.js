@@ -23,6 +23,8 @@
   var ext = function (url, label, cls) { return url ? '<a class="' + cls + '" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + label + "</a>" : ""; };
   var social = function () {
     return Object.keys(S.social || {}).filter(function (k) { return S.social[k]; }).map(function (k) {
+      var nm = esc(k.charAt(0).toUpperCase() + k.slice(1));
+      if (S.social[k].charAt(0) === "[") return '<span class="muted">' + nm + ": [add link]</span>"; // unfinished placeholder: text, not a link
       return '<a href="' + esc(S.social[k]) + '" target="_blank" rel="noopener noreferrer">' + esc(k.charAt(0).toUpperCase() + k.slice(1)) + "</a>"; }).join("");
   };
   var head = function (t, sub) { return '<section class="phead wrap"><h1>' + t + "</h1>" + (sub ? '<p class="lede">' + sub + "</p>" : "") + "</section>"; };
@@ -209,6 +211,26 @@
       fetch(ep, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(d) })
         .then(function (r) { if (!r.ok) throw 0; f.reset(); status.textContent = "Message sent. Thank you!"; status.className = "ok"; })
         .catch(function () { status.textContent = "Sending failed. Please try again or email me directly."; status.className = "bad"; });
+    });
+  }
+
+  // Analytics (optional): set "analytics" in data/site.js. Off when opened from a folder or localhost.
+  var A = S.analytics || {};
+  if (location.protocol !== "file:" && !/^(localhost|127\.)/.test(location.hostname)) {
+    if (A.goatcounter) {
+      var g = document.createElement("script"); g.async = true; g.src = "https://gc.zgo.at/count.js";
+      g.setAttribute("data-goatcounter", "https://" + A.goatcounter + ".goatcounter.com/count"); document.head.appendChild(g);
+    }
+    if (A.ga4) {
+      var gs = document.createElement("script"); gs.async = true; gs.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(A.ga4); document.head.appendChild(gs);
+      window.dataLayer = window.dataLayer || []; window.gtag = function () { window.dataLayer.push(arguments); }; window.gtag("js", new Date()); window.gtag("config", A.ga4);
+    }
+    // Count CV clicks: download vs view
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a[href$='.pdf']"); if (!a) return;
+      var dl = a.hasAttribute("download");
+      if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: dl ? "cv-download" : "cv-view", title: dl ? "CV download" : "CV view", event: true });
+      if (window.gtag) window.gtag("event", dl ? "cv_download" : "cv_view", { file_name: a.getAttribute("href") });
     });
   }
 })();

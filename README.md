@@ -45,3 +45,10 @@ Open `index.html` directly, or run `python3 -m http.server 8000` and visit http:
 
 ## Notes
 Fonts (Fraunces, Work Sans) load from Google Fonts. Colours are variables at the top of `assets/css/style.css`. The social-preview image is `assets/images/og-image.jpg` (add one, 1200x630).
+
+## Analytics (page views and CV downloads)
+In `data/site.js`, fill in ONE of these (leave the other empty):
+- `"analytics": { "goatcounter": "your-code" }` after creating a free site at goatcounter.com (no cookies). The dashboard shows page views, popular pages (including project pages), and device types.
+- `"analytics": { "ga4": "G-XXXXXXXXXX" }` for Google Analytics 4.
+CV clicks are recorded as events named `cv-download` and `cv-view` (GoatCounter) or `cv_download` and `cv_view` (GA4). Nothing is recorded when you open the files from a folder or on localhost.
+After changing `siteUrl`, adding a project, or renaming a project slug, double-click `update-pages.bat`.
