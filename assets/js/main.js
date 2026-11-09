@@ -93,7 +93,7 @@
       var b = S.cvFile ? '<a class="btn" href="' + esc(root + S.cvFile) + '" download>Download CV</a><a class="btn ghost" href="' + esc(root + S.cvFile) + '" target="_blank" rel="noopener noreferrer">View CV online</a>'
         : '<div class="notice"><p><strong>No CV yet.</strong> Add a PDF and set <code>cvFile</code> in data/site.js.</p></div>';
       var viewer = S.cvFile ? '<object class="cvbox" data="' + esc(root + S.cvFile) + '#view=FitH" type="application/pdf" aria-label="CV preview"><div class="notice"><p>Your browser can\'t show the CV here. Use the buttons above to open or download it.</p></div></object>' : "";
-      return head("Curriculum vitae", "Read my CV below, or download a copy.") + '<section class="wrap"><p class="cta">' + b + "</p>" + viewer + "</section>";
+      return head("Curriculum vitae", "Read my CV below, or download a copy.") + ((S.analytics || {}).goatcounter ? '<div class="wrap cvstats"><p><strong class="st-v">…</strong><span>Visitors</span></p><p><strong class="st-d">…</strong><span>CV downloads</span></p></div>' : "") + '<section class="wrap"><p class="cta">' + b + "</p>" + viewer + "</section>";
     },
     contact: function () {
       var f = function (id, label, extra, tag) { return '<div class="f"><label for="' + id + '">' + label + "</label><" + (tag || "input") + ' id="' + id + '" ' + extra + '><small class="err" id="' + id + '-e"></small></div>'; };
@@ -127,7 +127,7 @@
     '<div class="tools"><button id="theme" aria-label="Switch colour theme" type="button"><span aria-hidden="true">◐</span></button><button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu" type="button"><span></span><span></span></button></div>' +
     '<nav aria-label="Main"><ul id="menu">' + nav + '</ul></nav><div class="sidebot"><p class="soc">' + social() + '</p><a href="mailto:' + esc(S.email) + '">' + esc(S.email) + "</a></div></aside>" +
     '<div class="col"><main id="main">' + pages[page]() + '</main><footer class="foot"><p class="flogo">' + esc(S.name) + '</p><p class="muted">' + esc(S.title) + '</p><p><a href="mailto:' + esc(S.email) + '">' + esc(S.email) + '</a></p><p class="soc">' + social() +
-    '</p><ul class="fnav">' + nav + "</ul>" + ((S.analytics || {}).goatcounter ? '<p class="muted small stats">Visitors: <strong id="st-v">…</strong> · CV downloads: <strong id="st-d">…</strong></p>' : "") + '<p class="muted small">© ' + new Date().getFullYear() + " " + esc(S.name) + ". All rights reserved.</p></footer></div></div>";
+    '</p><ul class="fnav">' + nav + "</ul>" + ((S.analytics || {}).goatcounter ? '<p class="muted small stats">Visitors: <strong class="st-v">…</strong> · CV downloads: <strong class="st-d">…</strong></p>' : "") + '<p class="muted small">© ' + new Date().getFullYear() + " " + esc(S.name) + ". All rights reserved.</p></footer></div></div>";
   if (page !== "project") document.title = S.name + " | " + (page === "home" ? S.title : page.charAt(0).toUpperCase() + page.slice(1));
 
   // Theme (light by default, saved in localStorage)
@@ -235,14 +235,14 @@
   }
 
   // Public counters in the footer (GoatCounter). Needs "Allow adding visitor counts on your website" turned on in its settings.
-  if (A.goatcounter && document.getElementById("st-v")) {
+  if (A.goatcounter && document.querySelector(".st-v")) {
     var gc = function (path, cb) {
       var x = new XMLHttpRequest();
       x.onload = function () { var n = "0"; try { if (x.status === 200) n = JSON.parse(x.responseText).count; } catch (e) {} cb(n, x.status); };
       x.onerror = function () { cb("–", 0); };
       x.open("GET", "https://" + A.goatcounter + ".goatcounter.com/counter/" + encodeURIComponent(path) + ".json"); x.send();
     };
-    var put = function (id) { return function (n) { document.getElementById(id).textContent = n; }; };
+    var put = function (cls) { return function (n) { [].slice.call(document.querySelectorAll("." + cls)).forEach(function (el) { el.textContent = n; }); }; };
     gc("TOTAL", put("st-v"));
     gc("/cv-download", function (n, st) { if (st === 404) gc("cv-download", put("st-d")); else put("st-d")(n); });
   }
