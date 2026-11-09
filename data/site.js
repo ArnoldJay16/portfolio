@@ -9,7 +9,7 @@ window.SITE = {
   "email": "arnoldjayvillalobos16@gmail.com",
   "phone": "0970-862-1024",
   "availability": "Open to creative projects and collaborations",
-  "analytics": { "goatcounter": "", "ga4": "" },
+  "analytics": { "goatcounter": "", "ga4": "G-CPVC1550JH" },
   "formEndpoint": "https://formspree.io/f/mrppykng",
   "social": { "github": "[Add GitHub URL]", "linkedin": "[Add LinkedIn URL]", "facebook": "", "instagram": "" },
   "cvFile": "assets/cv/Arnold_Villalobos_CV.pdf",
