@@ -3,7 +3,7 @@ window.SITE = {
   "siteUrl": "https://arnoldjay16.github.io/portfolio",
   "name": "Arnold Jay Villalobos",
   "title": "Traditional/Digital Artist",
-  "tagline": "[Add a short tagline]",
+  "tagline": "Every detail inspires, every creation tells a story.",
   "intro": "Traditional and digital artist studying Graphics Design at City College of Calamba.",
   "location": "Calamba, Laguna",
   "email": "arnoldjayvillalobos16@gmail.com",
@@ -20,9 +20,9 @@ window.SITE = {
   "bio": [
     "I'm Arnold Jay Villalobos, a Traditional/Digital Artist from Calamba, Laguna. I'm a DCI/BSIT student at City College of Calamba, majoring in Graphics Design, and a member of the Information Technology Society Organization.",
     "Traditional art is my strongest skill. I also create digital art in IbisPaint and design in Canva.",
-    "[Add a paragraph about what inspired you, what you like to create, and the kinds of projects you've worked on.]"
+    "My love for art started with the cartoons and anime I enjoyed growing up, which sparked my imagination and appreciation for visual storytelling. I also find inspiration in the props, displays, and designs I see in malls reminding me that creativity is everywhere. I enjoy creating paintings, digital art, and graphic design, working on school projects, personal sketches."
   ],
-  "philosophy": "[Add your creative philosophy]",
+  "philosophy": "”Inspiration is everywhere; every detail holds a story worth creating.”I believe great art grows from observing the world around us and staying true to what inspires you. My goal is to create work that reflects both imagination and careful observation, while continuing to learn and grow as an artist.",
   "goals": "My goal is to continue improving my skills in traditional art, digital illustration, and graphic design while exploring new creative techniques and visual styles. Through my studies and personal projects, I hope to build a strong portfolio that showcases my abilities, creativity, and growth as an artist. In the future, I aspire to pursue opportunities where I can apply my artistic skills, collaborate with others, and continue developing my own creative identity.",
   "skills": {
     "Traditional Art": ["Traditional art"],
