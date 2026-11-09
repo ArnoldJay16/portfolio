@@ -93,7 +93,7 @@
       var b = S.cvFile ? '<a class="btn" href="' + esc(root + S.cvFile) + '" download>Download CV</a><a class="btn ghost" href="' + esc(root + S.cvFile) + '" target="_blank" rel="noopener noreferrer">View CV online</a>'
         : '<div class="notice"><p><strong>No CV yet.</strong> Add a PDF and set <code>cvFile</code> in data/site.js.</p></div>';
       var viewer = S.cvFile ? '<object class="cvbox" data="' + esc(root + S.cvFile) + '#view=FitH" type="application/pdf" aria-label="CV preview"><div class="notice"><p>Your browser can\'t show the CV here. Use the buttons above to open or download it.</p></div></object>' : "";
-      return head("Curriculum vitae", "Read my CV below, or download a copy.") + ((S.analytics || {}).goatcounter ? '<div class="wrap cvstats"><p><strong class="st-v">…</strong><span>Page views</span></p><p><strong class="st-d">…</strong><span>CV downloads</span></p></div>' : "") + '<section class="wrap"><p class="cta">' + b + "</p>" + viewer + "</section>";
+      return head("Curriculum vitae", "Read my CV below, or download a copy.") + ((S.analytics || {}).goatcounter ? '<div class="wrap cvstats"><p><strong class="st-v">…</strong><span>Page views</span></p><p><strong class="st-d">…</strong><span>CV downloads</span></p><p><a href="https://' + S.analytics.goatcounter + '.goatcounter.com" target="_blank" rel="noopener noreferrer">View live statistics</a></p></div>' : "") + '<section class="wrap"><p class="cta">' + b + "</p>" + viewer + "</section>";
     },
     contact: function () {
       var f = function (id, label, extra, tag) { return '<div class="f"><label for="' + id + '">' + label + "</label><" + (tag || "input") + ' id="' + id + '" ' + extra + '><small class="err" id="' + id + '-e"></small></div>'; };
@@ -127,7 +127,7 @@
     '<div class="tools"><button id="theme" aria-label="Switch colour theme" type="button"><span aria-hidden="true">◐</span></button><button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu" type="button"><span></span><span></span></button></div>' +
     '<nav aria-label="Main"><ul id="menu">' + nav + '</ul></nav><div class="sidebot"><p class="soc">' + social() + '</p><a href="mailto:' + esc(S.email) + '">' + esc(S.email) + "</a></div></aside>" +
     '<div class="col"><main id="main">' + pages[page]() + '</main><footer class="foot"><p class="flogo">' + esc(S.name) + '</p><p class="muted">' + esc(S.title) + '</p><p><a href="mailto:' + esc(S.email) + '">' + esc(S.email) + '</a></p><p class="soc">' + social() +
-    '</p><ul class="fnav">' + nav + "</ul>" + ((S.analytics || {}).goatcounter ? '<p class="muted small stats">Page views: <strong class="st-v">…</strong> · CV downloads: <strong class="st-d">…</strong></p>' : "") + '<p class="muted small">© ' + new Date().getFullYear() + " " + esc(S.name) + ". All rights reserved.</p></footer></div></div>";
+    '</p><ul class="fnav">' + nav + "</ul>" + ((S.analytics || {}).goatcounter ? '<p class="muted small stats">Page views: <strong class="st-v">…</strong> · CV downloads: <strong class="st-d">…</strong> · <a href="https://' + S.analytics.goatcounter + '.goatcounter.com" target="_blank" rel="noopener noreferrer">Live statistics</a></p>' : "") + '<p class="muted small">© ' + new Date().getFullYear() + " " + esc(S.name) + ". All rights reserved.</p></footer></div></div>";
   if (page !== "project") document.title = S.name + " | " + (page === "home" ? S.title : page.charAt(0).toUpperCase() + page.slice(1));
 
   // Theme (light by default, saved in localStorage)
@@ -236,14 +236,26 @@
 
   // Public counters in the footer (GoatCounter). Needs "Allow adding visitor counts on your website" turned on in its settings.
   if (A.goatcounter && document.querySelector(".st-v")) {
-    var gc = function (path, cb) {
-      var x = new XMLHttpRequest();
-      x.onload = function () { var n = "0"; try { if (x.status === 200) n = JSON.parse(x.responseText).count; } catch (e) {} cb(n, x.status); };
+    var gc = function (path, cb, plain) {
+      var x = new XMLHttpRequest(), url = "https://" + A.goatcounter + ".goatcounter.com/counter/" + encodeURIComponent(path) + ".json";
+      x.onload = function () {
+        if (!plain && x.status !== 200 && x.status !== 404) return gc(path, cb, true); // fall back to the plain address
+        var n = "0"; try { if (x.status === 200) n = JSON.parse(x.responseText).count; } catch (e) {} cb(n, x.status);
+      };
       x.onerror = function () { cb("–", 0); };
-      x.open("GET", "https://" + A.goatcounter + ".goatcounter.com/counter/" + encodeURIComponent(path) + ".json"); x.send();
+      x.open("GET", plain ? url : url + "?t=" + Date.now()); x.send(); // ?t= asks for a fresh value instead of a cached one
     };
     var put = function (cls) { return function (n) { [].slice.call(document.querySelectorAll("." + cls)).forEach(function (el) { el.textContent = n; }); }; };
-    gc("TOTAL", put("st-v"));
+    // Page views = sum of each page's own counter (GoatCounter's site-wide TOTAL can lag behind)
+    var base = (function () { var s = location.pathname.replace(/index\.html$/, "").split("/").filter(Boolean); s = s.slice(0, Math.max(0, s.length - (+B.dataset.depth || 0))); return "/" + (s.length ? s.join("/") + "/" : ""); })();
+    var routes = ["", "about/", "skills/", "experience/", "projects/", "education/", "cv/", "contact/"].concat(P.map(function (p) { return "projects/" + p.slug + "/"; }));
+    var sum = 0, left = routes.length, fails = 0;
+    routes.forEach(function (r) {
+      gc(base + r, function (n, st) {
+        if (st === 0) fails++; else sum += parseInt(String(n).replace(/[^0-9]/g, ""), 10) || 0;
+        if (--left === 0) put("st-v")(fails === routes.length ? "–" : sum.toLocaleString("en-US"));
+      });
+    });
     gc("/cv-download", function (n, st) { if (st === 404) gc("cv-download", put("st-d")); else put("st-d")(n); });
   }
 })();

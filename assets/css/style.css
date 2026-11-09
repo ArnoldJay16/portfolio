@@ -112,3 +112,4 @@ form{display:grid;gap:1rem}.f{display:grid;gap:.3rem}label{font-weight:500;font-
 @media(max-width:480px){.gal{grid-template-columns:1fr}}
 .cvbox{display:block;width:100%;height:min(85vh,1100px);min-height:520px;margin:2rem 0 4rem;border:1px solid var(--line);background:var(--bg2)}.cvstats{display:flex;gap:3rem;padding:.5rem 0 1.5rem}.cvstats p{margin:0}.cvstats strong{display:block;font:500 2rem/1.1 var(--serif);color:var(--accent)}.cvstats span{font-size:.85rem;color:var(--muted)}
 .side .muted{color:var(--sidemuted)}
+.cvstats p:last-child{align-self:flex-end}
