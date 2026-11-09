@@ -8,6 +8,7 @@
   var NAV = [["Home", "", "home"], ["About", "about/", "about"], ["Skills", "skills/", "skills"], ["Experience", "experience/", "experience"],
     ["Projects", "projects/", "projects"], ["Education", "education/", "education"], ["CV", "cv/", "cv"], ["Contact", "contact/", "contact"]];
   var P = S.projects || [];
+  var AN = S.analytics || {}, live = AN.goatcounter ? "https://" + AN.goatcounter + ".goatcounter.com" : ""; // live dashboard link; AN.showCounters adds on-page numbers
   var img = function (src, alt, cls) { return '<img class="' + (cls || "") + '" src="' + esc(root + src) + '" alt="' + esc(alt) + '" loading="lazy" data-ph="' + esc(src) + '">'; };
   var norm = function (x) { return typeof x === "string" ? { src: x } : (x || {}); };
   // Zoomable image: clicking opens the viewer; title/description (optional) show beneath it
@@ -93,7 +94,7 @@
       var b = S.cvFile ? '<a class="btn" href="' + esc(root + S.cvFile) + '" download>Download CV</a><a class="btn ghost" href="' + esc(root + S.cvFile) + '" target="_blank" rel="noopener noreferrer">View CV online</a>'
         : '<div class="notice"><p><strong>No CV yet.</strong> Add a PDF and set <code>cvFile</code> in data/site.js.</p></div>';
       var viewer = S.cvFile ? '<object class="cvbox" data="' + esc(root + S.cvFile) + '#view=FitH" type="application/pdf" aria-label="CV preview"><div class="notice"><p>Your browser can\'t show the CV here. Use the buttons above to open or download it.</p></div></object>' : "";
-      return head("Curriculum vitae", "Read my CV below, or download a copy.") + ((S.analytics || {}).goatcounter ? '<div class="wrap cvstats"><p><strong class="st-v">…</strong><span>Page views</span></p><p><strong class="st-d">…</strong><span>CV downloads</span></p><p><a href="https://' + S.analytics.goatcounter + '.goatcounter.com" target="_blank" rel="noopener noreferrer">View live statistics</a></p></div>' : "") + '<section class="wrap"><p class="cta">' + b + "</p>" + viewer + "</section>";
+      return head("Curriculum vitae", "Read my CV below, or download a copy.") + (live ? '<div class="wrap cvstats">' + (AN.showCounters ? '<p><strong class="st-v">…</strong><span>Page views</span></p><p><strong class="st-d">…</strong><span>CV downloads</span></p>' : "") + '<p><a class="' + (AN.showCounters ? "" : "btn ghost") + '" href="' + live + '" target="_blank" rel="noopener noreferrer">View live statistics</a></p></div>' : "") + '<section class="wrap"><p class="cta">' + b + "</p>" + viewer + "</section>";
     },
     contact: function () {
       var f = function (id, label, extra, tag) { return '<div class="f"><label for="' + id + '">' + label + "</label><" + (tag || "input") + ' id="' + id + '" ' + extra + '><small class="err" id="' + id + '-e"></small></div>'; };
@@ -127,7 +128,7 @@
     '<div class="tools"><button id="theme" aria-label="Switch colour theme" type="button"><span aria-hidden="true">◐</span></button><button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu" type="button"><span></span><span></span></button></div>' +
     '<nav aria-label="Main"><ul id="menu">' + nav + '</ul></nav><div class="sidebot"><p class="soc">' + social() + '</p><a href="mailto:' + esc(S.email) + '">' + esc(S.email) + "</a></div></aside>" +
     '<div class="col"><main id="main">' + pages[page]() + '</main><footer class="foot"><p class="flogo">' + esc(S.name) + '</p><p class="muted">' + esc(S.title) + '</p><p><a href="mailto:' + esc(S.email) + '">' + esc(S.email) + '</a></p><p class="soc">' + social() +
-    '</p><ul class="fnav">' + nav + "</ul>" + ((S.analytics || {}).goatcounter ? '<p class="muted small stats">Page views: <strong class="st-v">…</strong> · CV downloads: <strong class="st-d">…</strong> · <a href="https://' + S.analytics.goatcounter + '.goatcounter.com" target="_blank" rel="noopener noreferrer">Live statistics</a></p>' : "") + '<p class="muted small">© ' + new Date().getFullYear() + " " + esc(S.name) + ". All rights reserved.</p></footer></div></div>";
+    '</p><ul class="fnav">' + nav + "</ul>" + (live ? '<p class="muted small stats">' + (AN.showCounters ? 'Page views: <strong class="st-v">…</strong> · CV downloads: <strong class="st-d">…</strong> · ' : "") + '<a href="' + live + '" target="_blank" rel="noopener noreferrer">Live statistics</a></p>' : "") + '<p class="muted small">© ' + new Date().getFullYear() + " " + esc(S.name) + ". All rights reserved.</p></footer></div></div>";
   if (page !== "project") document.title = S.name + " | " + (page === "home" ? S.title : page.charAt(0).toUpperCase() + page.slice(1));
 
   // Theme (light by default, saved in localStorage)
