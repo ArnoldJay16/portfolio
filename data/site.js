@@ -1,7 +1,7 @@
 /* ALL website content lives here. Edit, save, refresh the browser: no build step needed. */
 window.SITE = {
   "siteUrl": "https://arnoldjay16.github.io/portfolio",
-  "name": "Arnold Jay Villalobos",
+  "name": "Arnold Jay R. Villalobos",
   "title": "Traditional/Digital Artist",
   "tagline": "Every detail inspires, every creation tells a story.",
   "intro": "Traditional and digital artist studying Graphics Design at City College of Calamba.",
@@ -18,7 +18,7 @@ window.SITE = {
   "occupation": "Student (DCI/BSIT, Graphics Design)",
   "specialization": ["Traditional art", "Digital illustration", "Graphic design"],
   "bio": [
-    "I'm Arnold Jay Villalobos, a Traditional/Digital Artist from Calamba, Laguna. I'm a DCI/BSIT student at City College of Calamba, majoring in Graphics Design, and a member of the Information Technology Society Organization.",
+    "I'm Arnold Jay R. Villalobos, a Traditional/Digital Artist from Calamba, Laguna. I'm a DCI/BSIT student at City College of Calamba, majoring in Graphics Design, and a member of the Information Technology Society Organization.",
     "Traditional art is my strongest skill. I also create digital art in IbisPaint and design in Canva.",
     "My love for art started with the cartoons and anime I enjoyed growing up, which sparked my imagination and appreciation for visual storytelling. I also find inspiration in the props, displays, and designs I see in malls reminding me that creativity is everywhere. I enjoy creating paintings, digital art, and graphic design, working on school projects, personal sketches."
   ],
