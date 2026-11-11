@@ -1,4 +1,4 @@
-# Arnold Jay Villalobos - Portfolio
+# Arnold Jay R. Villalobos - Portfolio
 
 Static website (HTML, CSS, JavaScript). No build step for content: every page reads `data/site.js`.
 
